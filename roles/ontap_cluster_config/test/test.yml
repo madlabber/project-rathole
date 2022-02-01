@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  name: 'ONTAP Cluster Config: {{ cluster.name }}'
+  gather_facts: no
+  vars:
+    state: present
+    login: &login
+      hostname: "{{ netapp_hostname }}"
+      username: "{{ netapp_username }}"
+      password: "{{ netapp_password }}"
+      https: true
+      validate_certs: false
+  # vars_prompt:  # For NetApp Admin Credentials
+  #   - name: netapp_username
+  #     prompt: NetApp 'admin'
+  #   - name: netapp_password
+  #     prompt: NetApp 'admin' password
+  #     secret: true
+  vars_files:
+  - vars.yml
+
+  collections:
+  - netapp.ontap
+
+  tasks:
+
+  - include_role:
+      name: ../ontap_cluster_config

@@ -1,0 +1,3 @@
+# myrole/meta/main.yml
+collections:
+  - netapp.ontap

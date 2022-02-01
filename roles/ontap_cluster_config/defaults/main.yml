@@ -1,0 +1,3 @@
+# default vars
+
+cluster_template: vsim2node4nic

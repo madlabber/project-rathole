@@ -11,7 +11,7 @@
 ###
 
 # VSIM license's code
-# license_codes: QDDSVRRRYVHXCFABGAAAAAAAAAAA,MBXNQRRRYVHXCFABGAAAAAAAAAAA,ANGJKUNFXMSMUCEZFAAAAAAAAAAA,UFTUNUNFXMSMUCEZFAAAAAAAAAAA
+##license_codes: QDDSVRRRYVHXCFABGAAAAAAAAAAA,MBXNQRRRYVHXCFABGAAAAAAAAAAA,ANGJKUNFXMSMUCEZFAAAAAAAAAAA,UFTUNUNFXMSMUCEZFAAAAAAAAAAA
 license_codes: "{{ licenses }}"
 
 disks:  # disks module assigns all visible disks to a node. This may be done during Day 0 Installation process
@@ -30,13 +30,9 @@ aggrs:  # Create one or more Aggregates.
 
 ports:  # Set MTU for ports
 - { node: "{{ clus.name }}-01", port: e0d, mtu: 1500, flowcontrol: none }
-#- { node: "{{ clus.name }}-01", port: e0e, mtu: 1500, flowcontrol: none }
-#- { node: "{{ clus.name }}-01", port: e0f, mtu: 1500, flowcontrol: none }
 - { node: "{{ clus.name }}-02", port: e0d, mtu: 1500, flowcontrol: none }
-#- { node: "{{ clus.name }}-02", port: e0e, mtu: 1500, flowcontrol: none }
-#- { node: "{{ clus.name }}-02", port: e0f, mtu: 1500, flowcontrol: none }
 
-#ifgrps:  # Create and add ports to Interface Groups.
+ifgrps:  # Create and add ports to Interface Groups.
 #- { name: a0a, node: "{{ clus.name }}-01", ports: "{{ ifgrp_ports }}", mode: multimode_lacp, mtu: 1500 }
 #- { name: a0a, node: "{{ clus.name }}-02", ports: "{{ ifgrp_ports }}", mode: multimode_lacp, mtu: 1500 }
 
@@ -47,8 +43,6 @@ vlans:  # Create vlans on LIFS
 bcasts:  # Create Broadcast domains
 - { name: "{{ bd.nas }}", mtu: 1500, ipspace: default,
    ports: "{{ clus.name }}-01:e0d,{{ clus.name }}-02:e0d" }
-# - { name: "{{ bd.mgmt }}", mtu: 1500, ipspace: default,
-#     ports: '{{ clus.name }}-01:e0M,{{ clus.name }}-02:e0M,{{ clus.name }}-01:e0e,{{ clus.name }}-02:e0e' }
 - { name: "{{ bd.mgmt }}", mtu: 1500, ipspace: default,
    ports: '{{ clus.name }}-01:e0c,{{ clus.name }}-02:e0c' }
 

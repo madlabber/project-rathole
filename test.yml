@@ -1,0 +1,34 @@
+---
+- hosts: all
+  name: inventory test
+  gather_facts: no
+  # vars:
+  #   state: present
+  #   login: &login
+  #     hostname: "{{ netapp_hostname }}"
+  #     username: "{{ netapp_username }}"
+  #     password: "{{ netapp_password }}"
+  #     https: true
+  #     validate_certs: false
+  # # vars_prompt:  # For NetApp Admin Credentials
+  # #   - name: netapp_username
+  # #     prompt: NetApp 'admin'
+  # #   - name: netapp_password
+  # #     prompt: NetApp 'admin' password
+  # #     secret: true
+  # vars_files:
+  # - ../../vars/vars_ontap_config_blueshirt.yml
+  # - ../../vars/vars_ontap_config_sandbox.yml
+  # - ../../vars/vars_ontap_config_role.yml
+
+  collections:
+  - netapp.ontap
+
+  tasks:
+
+  - debug:
+      msg: '{{inventory_hostname}}'
+
+  - debug:
+      msg: "{{ hostvars['gateway']['ip_address'] }}"
+
